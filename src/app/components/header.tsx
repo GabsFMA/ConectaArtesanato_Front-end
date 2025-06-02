@@ -30,7 +30,7 @@ export default function Header() {
           <div>
             <a
               href="/"
-              className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#2b2b2b] transition-all duration-300"
+              className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
             >
               <CircleUser className="text-white w-8 h-8" />
             </a>
@@ -38,7 +38,7 @@ export default function Header() {
           <div>
             <a
               href="/cart"
-              className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#2b2b2b] transition-all duration-300"
+              className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
             >
               <ShoppingCart className="text-white w-8 h-8" />
             </a>
