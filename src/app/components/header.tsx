@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import SearchBar from "./searchBar";
+import SearchBar from "./headerComponents/searchBar";
 import { useState } from "react";
 import { CircleUser, ShoppingCart } from 'lucide-react';
 
