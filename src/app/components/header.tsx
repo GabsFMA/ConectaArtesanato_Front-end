@@ -13,7 +13,7 @@ export default function Header() {
     <div className="w-full h-auto bg-[#C08B74] shadow-md">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <a href="">
-          <div className="">
+          <Link className="" href={"/"}>
             <Image
               src="/ConectaArtesanato_Logo.png"
               alt="Logo"
@@ -21,7 +21,7 @@ export default function Header() {
               height={100}
               className="rounded"
             />
-          </div>
+          </Link>
         </a>
         <nav className="space-x-4 flex gap-10">
           <div>
