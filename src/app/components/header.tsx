@@ -12,7 +12,6 @@ export default function Header() {
   return (
     <div className="w-full h-auto bg-[#C08B74] shadow-md">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-        <a href="">
           <Link className="" href={"/"}>
             <Image
               src="/ConectaArtesanato_Logo.png"
@@ -22,7 +21,6 @@ export default function Header() {
               className="rounded"
             />
           </Link>
-        </a>
         <nav className="space-x-4 flex gap-10">
           <div>
             <SearchBar query={query} onQueryChange={setQuery} />
@@ -38,7 +36,7 @@ export default function Header() {
           </div>
           <div>
             <a
-              href="/cart"
+              href=""
               className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
             >
               <ShoppingCart className="text-white w-8 h-8" />
