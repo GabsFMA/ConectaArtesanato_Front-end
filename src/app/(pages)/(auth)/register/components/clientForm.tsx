@@ -38,7 +38,7 @@ export default function ClientForm() {
         type="submit"
         className="w-full bg-[#D8671E] text-white py-2 rounded hover:bg-[#C0581A] transition duration-200"
       >
-        Registrar como Cliente
+        Registrar
       </button>
     </form>
     )
