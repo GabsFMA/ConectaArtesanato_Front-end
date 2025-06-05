@@ -4,6 +4,7 @@ import Image from "next/image";
 import SearchBar from "./headerComponents/searchBar";
 import { useState } from "react";
 import { CircleUser, ShoppingCart } from 'lucide-react';
+import Link from "next/link";
 
 export default function Header() {
   const [query, setQuery] = useState("");
@@ -28,12 +29,12 @@ export default function Header() {
           </div>
             
           <div>
-            <a
-              href="/"
+            <Link
+              href="/pages/register"
               className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
             >
               <CircleUser className="text-white w-8 h-8" />
-            </a>
+            </Link>
           </div>
           <div>
             <a
