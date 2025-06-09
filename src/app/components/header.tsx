@@ -28,7 +28,7 @@ export default function Header() {
             
           <div>
             <Link
-              href="/register"
+              href="/login"
               className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
             >
               <CircleUser className="text-white w-8 h-8" />
