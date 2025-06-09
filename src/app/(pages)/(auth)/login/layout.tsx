@@ -1,6 +1,6 @@
 "use client";
 
-import RegisterHeader from "../components/authHeader";
+import AuthHeader from "../components/authHeader";
 
 export default function RootLayout({
   children,
@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <RegisterHeader/>
+        <AuthHeader/>
         <main>
             {children}
         </main>
