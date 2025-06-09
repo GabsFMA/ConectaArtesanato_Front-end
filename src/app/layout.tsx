@@ -1,4 +1,6 @@
+import "./globals.css";
 import type { Metadata } from "next";
+import ClientLayout from "./components/clientLayout";
 
 export const metadata: Metadata = {
   title: "Conecta Artesanato",
@@ -13,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   );
