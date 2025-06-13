@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import AddressFields from './addressFields';
-
-// Interface para um endereço individual, correspondendo à interface do AddressFields
 interface Address {
   street: string;
   number: string;
@@ -14,7 +12,6 @@ interface Address {
   reference: string;
 }
 
-// Interface principal para o estado do formulário completo
 interface FormData {
   fullName: string;
   brandName: string;
@@ -31,7 +28,6 @@ interface FormData {
   addresses: Address[];
 }
 
-// Definindo o estado inicial do formulário para fácil redefinição
 const INITIAL_FORM_DATA: FormData = {
   fullName: '',
   brandName: '',
@@ -161,7 +157,6 @@ export default function ArtesaoForm() {
     console.log('Form Data Submitted:', formData);
     alert('Dados do artesão enviados! (Verifique o console para os dados)');
 
-    // Limpa o formulário redefinindo o estado para os valores iniciais
     setFormData(INITIAL_FORM_DATA);
   };
 
