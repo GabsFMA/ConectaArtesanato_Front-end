@@ -15,6 +15,7 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
   return (
     <div className="mb-6">
       <h3 className="text-xl font-semibold mb-4 text-gray-700">Endereços</h3>
+  
       {addresses.map((address, index) => (
         <div key={index} className="border p-4 rounded-md mb-4 bg-gray-50 relative">
           <h4 className="text-lg font-medium mb-3 text-gray-600">Endereço #{index + 1}</h4>
@@ -152,6 +153,7 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
           )}
         </div>
       ))}
+      
       <button
         type="button"
         onClick={onAddAddress}

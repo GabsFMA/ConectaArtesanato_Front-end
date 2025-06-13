@@ -119,6 +119,7 @@ export default function ArtesaoForm() {
   };
 
   const removeAddressField = (index: number) => {
+  const removeAddressField = (index: number) => {
     const newAddresses = formData.addresses.filter((_, i) => i !== index);
     setFormData(prevData => ({
       ...prevData,
