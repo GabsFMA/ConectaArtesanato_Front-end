@@ -8,13 +8,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    
       <body>
         <RegisterHeader/>
         <main>
             {children}
         </main>
       </body>
-    </html>
+   
   );
 }
