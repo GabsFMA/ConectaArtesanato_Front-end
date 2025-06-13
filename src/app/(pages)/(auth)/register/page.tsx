@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import ClienteForm from "./components/clientForm";
-import ArtesaoForm from "./components/artesaoForm";
+import ClienteForm from "./components/clientRegisterForm";
+import ArtesaoForm from "./components/artesaoRegisterForm";
 
 export default function RegisterPage() {
   const [userType, setUserType] = useState<"cliente" | "artesao">("cliente");
