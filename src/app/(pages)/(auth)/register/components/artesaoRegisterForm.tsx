@@ -1,34 +1,67 @@
 import React, { useState } from 'react';
-import AddressFields from './addressFields'; 
+import AddressFields from './addressFields';
+
+// Interface para um endereço individual, correspondendo à interface do AddressFields
+interface Address {
+  street: string;
+  number: string;
+  complement: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  type: string;
+  reference: string;
+}
+
+// Interface principal para o estado do formulário completo
+interface FormData {
+  fullName: string;
+  brandName: string;
+  cpf_cnpj: string;
+  email: string;
+  password: string;
+  profilePictureURL: string;
+  personalData: {
+    birthDate: string;
+    phone: string[];
+  };
+  story: string;
+  artInfo: string;
+  addresses: Address[];
+}
+
+// Definindo o estado inicial do formulário para fácil redefinição
+const INITIAL_FORM_DATA: FormData = {
+  fullName: '',
+  brandName: '',
+  cpf_cnpj: '',
+  email: '',
+  password: '',
+  profilePictureURL: '',
+  personalData: {
+    birthDate: '',
+    phone: [''],
+  },
+  story: '',
+  artInfo: '',
+  addresses: [{
+    street: '',
+    number: '',
+    complement: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    type: '',
+    reference: '',
+  }],
+};
 
 export default function ArtesaoForm() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    brandName: '',
-    cpf_cnpj: '',
-    email: '',
-    password: '',
-    profilePictureURL: '',
-    personalData: {
-      birthDate: '',
-      phone: [''], 
-    },
-    story: '',
-    artInfo: '',
-    addresses: [{
-      street: '',
-      number: '',
-      complement: '',
-      neighborhood: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      type: '',
-      reference: '',
-    }], // Start with one address
-  });
+  const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
       ...prevData,
@@ -36,7 +69,7 @@ export default function ArtesaoForm() {
     }));
   };
 
-  const handlePersonalDataChange = (e: { target: { name: any; value: any; }; }) => {
+  const handlePersonalDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
       ...prevData,
@@ -123,10 +156,13 @@ export default function ArtesaoForm() {
     }));
   };
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
     alert('Dados do artesão enviados! (Verifique o console para os dados)');
+
+    // Limpa o formulário redefinindo o estado para os valores iniciais
+    setFormData(INITIAL_FORM_DATA);
   };
 
   return (
