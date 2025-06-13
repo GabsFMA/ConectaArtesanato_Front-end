@@ -1,36 +1,79 @@
+import React, { useState } from 'react';
+interface ClientFormData {
+  name: string;
+  email: string;
+  password: string;
+}
+
+const INITIAL_CLIENT_FORM_DATA: ClientFormData = {
+  name: '',
+  email: '',
+  password: '',
+};
+
 export default function ClientForm() {
-    return(
-        <form>
+
+  const [formData, setFormData] = useState<ClientFormData>(INITIAL_CLIENT_FORM_DATA);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); 
+    console.log('Client Form Data Submitted:', formData);
+    alert('Dados do cliente enviados! (Verifique o console para os dados)');
+
+ 
+    setFormData(INITIAL_CLIENT_FORM_DATA);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="p-6 max-w-sm mx-auto bg-white rounded-lg shadow-md">
+
       <div className="mb-4">
         <label className="block text-sm font-medium mb-2" htmlFor="name">
-          Nome
+          Nome <span className="text-red-500">*</span>
         </label>
         <input
           type="text"
           id="name"
-          className="w-full p-2 border border-gray-300 rounded"
+          name="name" 
+          value={formData.name} 
+          onChange={handleChange} 
+          className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
           required
         />
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium mb-2" htmlFor="email">
-          Email
+          Email <span className="text-red-500">*</span>
         </label>
         <input
           type="email"
           id="email"
-          className="w-full p-2 border border-gray-300 rounded"
+          name="email" 
+          value={formData.email}
+          onChange={handleChange} 
+          className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
           required
         />
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium mb-2" htmlFor="password">
-          Senha
+          Senha <span className="text-red-500">*</span>
         </label>
         <input
           type="password"
           id="password"
-          className="w-full p-2 border border-gray-300 rounded"
+          name="password" 
+          value={formData.password} 
+          onChange={handleChange} 
+          className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
           required
         />
       </div>
@@ -41,5 +84,5 @@ export default function ClientForm() {
         Registrar
       </button>
     </form>
-    )
+  );
 }

@@ -162,7 +162,6 @@ export default function ArtesaoForm() {
 
   return (
     <form onSubmit={handleSubmit} className="p-6 max-w-2xl mx-auto bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center text-[#D8671E]">Registro de Artesão</h2>
 
       <div className="mb-6">
         <h3 className="text-xl font-semibold mb-4 text-gray-700">Informações Básicas</h3>
