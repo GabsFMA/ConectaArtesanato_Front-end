@@ -11,7 +11,7 @@ export default function ClientForm() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false); // Novo estado de sucesso
+    const [isSuccess, setIsSuccess] = useState(false); 
     const router = useRouter();
 
     const handleSubmit = async (e: FormEvent) => {
@@ -26,7 +26,7 @@ export default function ClientForm() {
                 password,
                 role: 'client'
             });
-            setIsSuccess(true); // Ativa a mensagem de sucesso
+            setIsSuccess(true); 
         } catch (err: any) {
             const errorMessage = err.response?.data?.message || 'Ocorreu um erro ao tentar se cadastrar. Tente novamente.';
             setError(errorMessage);
@@ -35,7 +35,6 @@ export default function ClientForm() {
         }
     };
     
-    // Se o cadastro foi bem-sucedido, mostra a mensagem de sucesso
     if (isSuccess) {
       return (
         <div className="text-center">
@@ -47,8 +46,7 @@ export default function ClientForm() {
         </div>
       )
     }
-
-    // Caso contrário, mostra o formulário
+    
     return (
         <form onSubmit={handleSubmit}>
             {error && <p className="text-red-500 text-sm mb-4 text-center">{error}</p>}
