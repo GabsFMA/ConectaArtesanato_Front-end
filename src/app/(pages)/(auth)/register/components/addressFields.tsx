@@ -1,13 +1,37 @@
-import React from 'react';
+import React from "react";
+interface Address {
+  street: string;
+  number: string;
+  complement: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  type: string;
+  reference: string;
+}
+interface AddressFieldsProps {
+  addresses: Address[];
+  onAddressChange: (index: number, name: string, value: string) => void;
+  onAddAddress: () => void;
+  onRemoveAddress: (index: number) => void;
+}
 
-export default function AddressFields({ addresses, onAddressChange, onAddAddress, onRemoveAddress }) {
+export default function AddressFields({
+  addresses,
+  onAddressChange,
+  onAddAddress,
+  onRemoveAddress,
+}: AddressFieldsProps) {
   return (
     <div className="mb-6">
       <h3 className="text-xl font-semibold mb-4 text-gray-700">Endereços</h3>
+  
       {addresses.map((address, index) => (
         <div key={index} className="border p-4 rounded-md mb-4 bg-gray-50 relative">
           <h4 className="text-lg font-medium mb-3 text-gray-600">Endereço #{index + 1}</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+       
             <div>
               <label className="block text-sm font-medium mb-2" htmlFor={`street-${index}`}>
                 Rua
@@ -17,10 +41,11 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`street-${index}`}
                 name="street"
                 value={address.street}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
+          
             <div>
               <label className="block text-sm font-medium mb-2" htmlFor={`number-${index}`}>
                 Número
@@ -30,10 +55,11 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`number-${index}`}
                 name="number"
                 value={address.number}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
+        
             <div>
               <label className="block text-sm font-medium mb-2" htmlFor={`complement-${index}`}>
                 Complemento
@@ -43,10 +69,11 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`complement-${index}`}
                 name="complement"
                 value={address.complement}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
+        
             <div>
               <label className="block text-sm font-medium mb-2" htmlFor={`neighborhood-${index}`}>
                 Bairro
@@ -56,10 +83,11 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`neighborhood-${index}`}
                 name="neighborhood"
                 value={address.neighborhood}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
+        
             <div>
               <label className="block text-sm font-medium mb-2" htmlFor={`city-${index}`}>
                 Cidade
@@ -69,10 +97,11 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`city-${index}`}
                 name="city"
                 value={address.city}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
+         
             <div>
               <label className="block text-sm font-medium mb-2" htmlFor={`state-${index}`}>
                 Estado
@@ -82,10 +111,11 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`state-${index}`}
                 name="state"
                 value={address.state}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
+         
             <div>
               <label className="block text-sm font-medium mb-2" htmlFor={`zipCode-${index}`}>
                 CEP
@@ -95,10 +125,11 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`zipCode-${index}`}
                 name="zipCode"
                 value={address.zipCode}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
+       
             <div>
               <label className="block text-sm font-medium mb-2" htmlFor={`type-${index}`}>
                 Tipo
@@ -108,10 +139,11 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`type-${index}`}
                 name="type"
                 value={address.type}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
+           
             <div className="col-span-full">
               <label className="block text-sm font-medium mb-2" htmlFor={`reference-${index}`}>
                 Ponto de Referência
@@ -121,11 +153,12 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
                 id={`reference-${index}`}
                 name="reference"
                 value={address.reference}
-                onChange={(e) => onAddressChange(index, e)}
+                onChange={(e) => onAddressChange(index, e.target.name, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded focus:ring-[#D8671E] focus:border-[#D8671E]"
               />
             </div>
           </div>
+          
           {addresses.length > 1 && (
             <button
               type="button"
@@ -138,6 +171,7 @@ export default function AddressFields({ addresses, onAddressChange, onAddAddress
           )}
         </div>
       ))}
+      
       <button
         type="button"
         onClick={onAddAddress}

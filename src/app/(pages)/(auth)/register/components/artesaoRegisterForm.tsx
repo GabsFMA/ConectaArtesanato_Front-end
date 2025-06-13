@@ -28,7 +28,7 @@ export default function ArtesaoForm() {
     }], // Start with one address
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
       ...prevData,
@@ -36,7 +36,7 @@ export default function ArtesaoForm() {
     }));
   };
 
-  const handlePersonalDataChange = (e) => {
+  const handlePersonalDataChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
       ...prevData,
@@ -47,7 +47,7 @@ export default function ArtesaoForm() {
     }));
   };
 
-  const handlePhoneChange = (index, e) => {
+  const handlePhoneChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
     const newPhones = [...formData.personalData.phone];
     newPhones[index] = e.target.value;
     setFormData(prevData => ({
@@ -69,7 +69,7 @@ export default function ArtesaoForm() {
     }));
   };
 
-  const removePhoneField = (index) => {
+  const removePhoneField = (index: number) => {
     const newPhones = formData.personalData.phone.filter((_, i) => i !== index);
     setFormData(prevData => ({
       ...prevData,
@@ -80,17 +80,22 @@ export default function ArtesaoForm() {
     }));
   };
 
-  const handleAddressChange = (index, e) => {
-    const { name, value } = e.target;
-    const newAddresses = [...formData.addresses];
-    newAddresses[index] = {
-      ...newAddresses[index],
-      [name]: value,
-    };
-    setFormData(prevData => ({
-      ...prevData,
-      addresses: newAddresses,
-    }));
+  const handleAddressChange = (
+    index: number,
+    name: string,
+    value: string
+  ) => {
+    setFormData(prevData => {
+      const newAddresses = [...prevData.addresses];
+      newAddresses[index] = {
+        ...newAddresses[index],
+        [name]: value,
+      };
+      return {
+        ...prevData,
+        addresses: newAddresses,
+      };
+    });
   };
 
   const addAddressField = () => {
@@ -110,7 +115,7 @@ export default function ArtesaoForm() {
     }));
   };
 
-  const removeAddressField = (index) => {
+  const removeAddressField = (index: number) => {
     const newAddresses = formData.addresses.filter((_, i) => i !== index);
     setFormData(prevData => ({
       ...prevData,
@@ -118,7 +123,7 @@ export default function ArtesaoForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
     alert('Dados do artesão enviados! (Verifique o console para os dados)');
