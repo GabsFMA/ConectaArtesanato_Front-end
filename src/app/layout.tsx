@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import ClientLayout from "./components/clientLayout";
-import { AuthProvider } from "@/contexts/AuthContext"; // Importação adicionada
+import ClientLayout from "./components/clientLayout"; // Certifique-se que o caminho está correto
 
 export const metadata: Metadata = {
   title: "Conecta Artesanato",
@@ -14,14 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body>
-        {/* AuthProvider envolvendo o layout */}
-        <AuthProvider>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
-        </AuthProvider>
+        {/*
+          Toda a lógica de providers e layout (Header/Footer)
+          foi movida para dentro do ClientLayout.
+        */}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
