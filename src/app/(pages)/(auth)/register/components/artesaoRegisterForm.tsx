@@ -320,4 +320,5 @@ export default function ArtesaoForm() {
       </button>
     </form>
   );
+  }
 }
