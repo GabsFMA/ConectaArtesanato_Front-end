@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
+
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api',
   timeout: 10000,
   headers: {
@@ -41,6 +42,11 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export default api;
+
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+});
 
 export default api;
 
