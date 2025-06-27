@@ -3,6 +3,29 @@
 import Image from "next/image";
 import SearchBar from "./headerComponents/searchBar";
 import { useState } from "react";
+import { CircleUser, ShoppingCart, LogOut, User, Package } from 'lucide-react';
+import Link from "next/link";
+import { useAuth } from "@/contexts/AuthContext";
+
+export default function Header() {
+  const [query, setQuery] = useState("");
+  const { isAuthenticated, user, logout, isLoading } = useAuth();
+
+  const getUserDashboardLink = () => {
+    if (!user) return "/";
+    return user.tipo === 'artesao' ? '/artesanato' : '/cliente';
+  };
+
+  const getUserDashboardLabel = () => {
+    if (!user) return "Perfil";
+    return user.tipo === 'artesao' ? 'Painel do Artesão' : 'Minha Conta';
+  };
+
+  const getUserIcon = () => {
+    if (!user) return CircleUser;
+    return user.tipo === 'artesao' ? Package : User;
+  };
+=======
 import { CircleUser, ShoppingCart, LogOut } from 'lucide-react';
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext"; // Importação adicionada
@@ -28,6 +51,35 @@ export default function Header() {
             <SearchBar query={query} onQueryChange={setQuery} />
           </div>
 
+
+          {!isLoading && (
+            <>
+              {isAuthenticated && user ? (
+                <>
+                  {/* Botão de Dashboard do Usuário */}
+                  <Link
+                    href={getUserDashboardLink()}
+                    className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
+                    title={getUserDashboardLabel()}
+                  >
+                    {(() => {
+                      const Icon = getUserIcon();
+                      return <Icon className="text-white w-8 h-8" />;
+                    })()}
+                  </Link>
+                  
+                  {/* Mostrar carrinho apenas para clientes */}
+                  {user.tipo === 'cliente' && (
+                    <Link
+                      href="/cart"
+                      className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
+                      title="Carrinho de Compras"
+                    >
+                      <ShoppingCart className="text-white w-8 h-8" />
+                    </Link>
+                  )}
+                  
+
           {!isLoading && ( // Não mostra nada enquanto carrega o estado de auth
             <>
               {isAuthenticated ? (
@@ -40,6 +92,7 @@ export default function Header() {
                   >
                     <CircleUser className="text-white w-8 h-8" />
                   </Link>
+
                   {/* Botão de Logout */}
                   <button
                     onClick={logout}
@@ -50,6 +103,30 @@ export default function Header() {
                   </button>
                 </>
               ) : (
+
+                <>
+                  {/* Botão de Login */}
+                  <Link
+                    href="/login"
+                    className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
+                    title="Login"
+                  >
+                    <CircleUser className="text-white w-8 h-8" />
+                  </Link>
+                  
+                  {/* Carrinho para usuários não logados */}
+                  <Link
+                    href="/cart"
+                    className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
+                    title="Carrinho de Compras"
+                  >
+                    <ShoppingCart className="text-white w-8 h-8" />
+                  </Link>
+                </>
+              )}
+            </>
+          )}
+
                 // Botão de Login
                 <Link
                   href="/login"
@@ -71,8 +148,13 @@ export default function Header() {
               <ShoppingCart className="text-white w-8 h-8" />
             </a>
           </div>
+
         </nav>
       </div>
     </div>
   );
+
 }
+
+}
+
