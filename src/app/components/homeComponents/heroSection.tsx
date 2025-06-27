@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function HeroSection() {
@@ -9,9 +10,9 @@ export default function HeroSection() {
       <p className="mb-6">
         Descubra itens únicos feitos à mão pelos melhores artesãos.
       </p>
-      <button className="bg-[#d8671e] text-white px-6 py-2 rounded font-semibold">
-        Explorar
-      </button>
+      <Link href="/products" className="bg-[#d8671e] text-white px-6 py-2 rounded font-semibold cursor-pointer">
+          Explorar
+      </Link>
     </section>
   );
 }
