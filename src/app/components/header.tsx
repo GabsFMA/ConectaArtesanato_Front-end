@@ -25,14 +25,6 @@ export default function Header() {
     if (!user) return CircleUser;
     return user.tipo === 'artesao' ? Package : User;
   };
-=======
-import { CircleUser, ShoppingCart, LogOut } from 'lucide-react';
-import Link from "next/link";
-import { useAuth } from "@/contexts/AuthContext"; // Importação adicionada
-
-export default function Header() {
-  const [query, setQuery] = useState("");
-  const { isAuthenticated, logout, isLoading } = useAuth(); // Usando o contexto
 
   return (
     <div className="w-full h-auto bg-[#C08B74] shadow-md">
@@ -51,7 +43,6 @@ export default function Header() {
             <SearchBar query={query} onQueryChange={setQuery} />
           </div>
 
-
           {!isLoading && (
             <>
               {isAuthenticated && user ? (
@@ -67,7 +58,7 @@ export default function Header() {
                       return <Icon className="text-white w-8 h-8" />;
                     })()}
                   </Link>
-                  
+
                   {/* Mostrar carrinho apenas para clientes */}
                   {user.tipo === 'cliente' && (
                     <Link
@@ -78,20 +69,6 @@ export default function Header() {
                       <ShoppingCart className="text-white w-8 h-8" />
                     </Link>
                   )}
-                  
-
-          {!isLoading && ( // Não mostra nada enquanto carrega o estado de auth
-            <>
-              {isAuthenticated ? (
-                <>
-                  {/* Botão de Perfil (futuramente levará para /profile/me) */}
-                  <Link
-                    href="/profile" // Mudar para o perfil quando a página existir
-                    className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
-                    title="Meu Perfil"
-                  >
-                    <CircleUser className="text-white w-8 h-8" />
-                  </Link>
 
                   {/* Botão de Logout */}
                   <button
@@ -103,7 +80,6 @@ export default function Header() {
                   </button>
                 </>
               ) : (
-
                 <>
                   {/* Botão de Login */}
                   <Link
@@ -113,7 +89,7 @@ export default function Header() {
                   >
                     <CircleUser className="text-white w-8 h-8" />
                   </Link>
-                  
+
                   {/* Carrinho para usuários não logados */}
                   <Link
                     href="/cart"
@@ -126,35 +102,8 @@ export default function Header() {
               )}
             </>
           )}
-
-                // Botão de Login
-                <Link
-                  href="/login"
-                  className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
-                  title="Login"
-                >
-                  <CircleUser className="text-white w-8 h-8" />
-                </Link>
-              )}
-            </>
-          )}
-
-          {/* Carrinho de Compras continua igual */}
-          <div>
-            <a
-              href="/cart"
-              className="flex justify-center items-center w-10 h-10 rounded-full hover:bg-[#D8671E] scale-110 transition-all duration-300"
-            >
-              <ShoppingCart className="text-white w-8 h-8" />
-            </a>
-          </div>
-
         </nav>
       </div>
     </div>
   );
-
 }
-
-}
-

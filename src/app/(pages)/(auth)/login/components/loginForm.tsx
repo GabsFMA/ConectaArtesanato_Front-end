@@ -2,14 +2,14 @@
 
 import { useState, FormEvent } from 'react';
 import api from '@/services/api';
-import { useAuth } from '@/contexts/AuthContext'; // Importação do hook
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const { login } = useAuth(); // Usando a função login do contexto
+    const { login } = useAuth();
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -18,14 +18,12 @@ export default function LoginForm() {
 
         try {
             const response = await api.post('/auth/login', { email, password });
-            
-            const { token } = response.data;
-            if (token) {
-                login(token); // Chama a função do contexto para fazer o login
+            const { token, user } = response.data;
+            if (token && user) {
+                login(token, user); 
             } else {
-                 setError('Token não recebido do servidor.');
+                setError('Token ou dados do usuário não recebidos do servidor.');
             }
-
         } catch (err: any) {
             console.error('Erro de login:', err);
             const errorMessage = err.response?.data?.message || 'Falha no login. Verifique suas credenciais.';
