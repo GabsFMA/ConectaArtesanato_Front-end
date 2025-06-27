@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import ClientLayout from "./components/clientLayout"; // Certifique-se que o caminho está correto
+import ClientLayout from "./components/clientLayout";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { AuthProvider } from "@/contexts/AuthContext"; // Importação adicionada
 
 export const metadata: Metadata = {
   title: "Conecta Artesanato",
@@ -15,11 +17,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
-        {/*
-          Toda a lógica de providers e layout (Header/Footer)
-          foi movida para dentro do ClientLayout.
-        */}
-        <ClientLayout>{children}</ClientLayout>
+        <AuthProvider>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </AuthProvider>
       </body>
     </html>
   );
